@@ -42,7 +42,7 @@ pipeline {
                         error("❌ Unsupported branch: ${env.BRANCH_NAME}. Only 'main' and 'uat' are allowed.")
                     }
 
-                    withCredentials([string(credentialsId: 'UMS_CLUSTER', variable: 'CLUSTER_CONTEXT')]) {
+                    withCredentials([string(credentialsId: 'ums_cluster', variable: 'CLUSTER_CONTEXT')]) {
                         sh """
                         kubectl config use-context $CLUSTER_CONTEXT
                         kubectl apply -f k8s-manifests/frontend-deployment.yaml -n ${namespace}
