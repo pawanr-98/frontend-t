@@ -45,10 +45,10 @@ pipeline {
                     withCredentials([string(credentialsId: 'ums-cluster', variable: 'CLUSTER_CONTEXT')]) {
                         sh """
                         kubectl config use-context $CLUSTER_CONTEXT
-                        kubectl apply -f k8s-manifests/frontend-deployment.yaml -n ${namespace}
-                        kubectl apply -f k8s-manifests/frontend-service.yaml -n ${namespace}
-                        kubectl apply -f k8s-manifests/frontend-ingress.yaml -n ${namespace}
-                        kubectl set image deployment/dr-frontend dr-frontend=$DOCKER_IMAGE -n ${namespace}
+                        kubectl apply -f k8s-manifests/deployment.yaml -n ${namespace}
+                        kubectl apply -f k8s-manifests/service.yaml -n ${namespace}
+                        kubectl apply -f k8s-manifests/ingress.yaml -n ${namespace}
+                        kubectl set image deployment/ums-frontend ums-frontend=$DOCKER_IMAGE -n ${namespace}
                         """
                     }
                 }
