@@ -13,6 +13,9 @@ spec:
       labels:
         app: ums-frontend
     spec:
+      imagePullSecrets:
+        - name: regcred
+    spec:
       containers:
         - name: ums-frontend
           image: pdock855/dr-front:placefolder
