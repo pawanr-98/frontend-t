@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ums-ingress
+  namespace: ums-prod
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - secretName: dr-frontend-tls
+  rules:
+    - http:
+        paths:
+         - path: /
+           pathType: Prefix
+           backend:
+             service:
+               name: ums-service
+               port:
+                 number: 80 
